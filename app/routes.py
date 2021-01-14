@@ -55,6 +55,7 @@ def create_user():
         msg = str(e).split(":")[1]
         return jsonify({"error": msg})
     except Exception as e:
+        print(e)
         return jsonify({"error": "invalid data"})
 
     output = {
