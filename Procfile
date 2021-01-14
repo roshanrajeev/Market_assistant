@@ -1,1 +1,1 @@
-web: flask db upgrade, gunicorn market:app
+web: flask db upgrade; gunicorn market:app
