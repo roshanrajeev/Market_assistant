@@ -10,7 +10,7 @@ class User(db.Model):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
-    admin = db.Column(db.Integer, default=False)
+    admin = db.Column(db.Integer, default=0)
 
     ratings = db.relationship('Rating', backref='user', uselist=False)
 

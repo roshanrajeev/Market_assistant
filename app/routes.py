@@ -205,7 +205,7 @@ def promote_user(current_user, user_id):
     if not user:
         return jsonify({"error": "user not found!"}), 404
 
-    user.admin = True
+    user.admin = 1
     db.session.commit()
     output = {
         'username': user.username,
