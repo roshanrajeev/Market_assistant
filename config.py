@@ -7,7 +7,9 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 # configuration
 class Config(object):
-    DEBUG = True
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'clark-kent-is-superman'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or "sqlite:///" + os.path.join(basedir, 'app.db')
+    DEBUG = False
+    SECRET_KEY = os.environ.get('SECRET_KEY') or '9b471f1e7466c6e84582d81855994b78'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "sqlite:///" + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# 9b471f1e7466c6e84582d81855994b78
