@@ -47,7 +47,7 @@ def create_user():
     if user: return jsonify({"error": "email already registered"})
 
     try:
-        user = User(user_id=str(uuid.uuid4()), username=data['username'], name=data['name'], email=data['email'], admin=False)
+        user = User(user_id=str(uuid.uuid4()), username=data['username'], name=data['name'], email=data['email'], admin=0)
         user.set_password_hash(data['password'])
         db.session.add(user)
         db.session.commit()
