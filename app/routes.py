@@ -5,6 +5,9 @@ import uuid
 import jwt
 from functools import wraps
 from ml.predictor import predictor
+import json
+from json import JSONEncoder
+from app.utils import NumpyArrayEncoder
 
 def token_required(f):
     @wraps(f)
@@ -163,7 +166,9 @@ def get_shopping_list(current_user):
     offers = current_user.ratings.offers
     
     res = predictor(quality, brand, price, offers)
-    return jsonify({"class": res})
+    encodedNumpyData = json.dumps(res, cls=NumpyArrayEncoder)
+
+    return jsonify({"class": encodedNumpyData})
 
 
 @app.route('/api/user/rating', methods=['POST'])

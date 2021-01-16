@@ -5,16 +5,16 @@ import pickle
 from sklearn.model_selection import train_test_split
 import os
 
-def predictor():
+def predictor(quality, brand, price, offers):
     model = pickle.load(open(os.path.join(os.path.abspath(os.path.dirname(__file__)), "model.pkl"),'rb'))
     """Quality - Brand - Price - Offers (on scale from 1-3, both inclusive)
         the values of quality,brand price and offers must be changed accordingly from the survey!!!
 
     """
-    quality=1 #less quality prefferd
-    brand=3   #local brand
-    price=1     #lower price
-    offers=1    #no or little offers
+    # quality=1 #less quality prefferd
+    # brand=3   #local brand
+    # price=1     #lower price
+    # offers=1    #no or little offers
     res=model.predict([[quality,brand,price,offers]])
     print(res)
     shopping=[]
