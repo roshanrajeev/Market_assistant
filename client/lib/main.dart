@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:markus/Screens/account.dart';
+import 'package:markus/Screens/cart.dart';
 import 'package:markus/Screens/home.dart';
 import 'package:markus/Screens/itemDetails.dart';
 import 'package:markus/Screens/login.dart';
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DbMethods().initialise();
+    user.initialise();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Markus',
       theme: ThemeData(
         fontFamily: 'Poppins',
@@ -27,12 +29,14 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        //https://meet.google.com/xhi-hvvn-rvj
+        
         'home': (context) => HomePage(),
         'settings': (context) => Settings(),
         'account': (context) => Account(),
         'login': (context) => Login(),
         'signin': (context) => Signin(),
+
+        'cart': (context) => CartScreen(),
       },
       initialRoute: 'home',
     );

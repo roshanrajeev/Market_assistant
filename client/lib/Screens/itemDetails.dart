@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:markus/Objects/itemclass.dart';
+import 'package:markus/Screens/cart.dart';
 
 class ItemDetail extends StatelessWidget {
   final Item _item;
@@ -75,7 +77,10 @@ class ItemDetail extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7)),
                     color: Colors.grey[200],
-                    onPressed: () {},
+                    onPressed: () {
+                      cartItems.add(_item);
+                      Navigator.pushNamed(context, 'cart');
+                    },
                     child: Text(
                       'Add to Cart',
                       style: TextStyle(fontSize: 20, color: Colors.black),
@@ -108,7 +113,14 @@ class ItemDetail extends StatelessWidget {
                 padding: EdgeInsets.all(8),
                 color: Colors.grey[200],
                 // width: double.infinity,
-                onPressed: () {},
+                onPressed: () async {
+                  if (_item.adurl == '') return;
+                  if (await canLaunch(_item.adurl)) {
+                    await launch(_item.adurl);
+                  } else {
+                    throw 'Could not launch ${_item.adurl}';
+                  }
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -199,7 +211,6 @@ class ItemDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-            if (_item.specs.keys.length != 0)
               Padding(
                 padding: const EdgeInsets.only(bottom: 10, top: 10),
                 child: Text(
